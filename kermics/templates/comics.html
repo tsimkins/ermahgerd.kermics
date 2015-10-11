@@ -4,13 +4,16 @@
 {% block content %}
 
     {% for i in comics %}
+        {% set date_text = format_date(i.original_date) %}
         <div class="comic">
-            <h2>{{ format_date(i.original_date) }}</h2>
+            <h2>{{ date_text }}</h2>
             <div>
                 {% if i.published_date == i.original_date %}
-                    <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date) }}" />
+                    <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date) }}" 
+                         alt="{{ i.series.title}} - {{ date_text }}" />
                 {% else %}
-                    <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date, original_date=i.original_date) }}" />
+                    <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date, original_date=i.original_date) }}
+                         alt="{{ i.series.title}} - {{ date_text }}" />
                 {% endif%}
             </div>
         </div>
