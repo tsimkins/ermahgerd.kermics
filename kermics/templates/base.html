@@ -8,9 +8,79 @@
         <title>{{ title }}</title>
     
         <style type="text/css">
-            body {
-                font-family: Arial;
+        
+            html body {
+                padding: 0;
+                margin: 0;
+                border: 0;
             }
+
+            body {
+                font-family: "Lucida Grande", Arial, sans-serif;
+                background-color: #868F6A;
+            }
+            
+            #navigation {
+                background-color: #475228;
+                position: fixed;
+                width: 100%;
+            }
+            
+            #navigation ul {
+                max-width: calc(1000px + 4em);
+                margin: 0 auto;
+                display: block;
+                padding: 0;
+            }
+            
+            #navigation ul li {
+                padding: 0;
+                margin: 0;
+                display: inline;
+                float: left;
+            }
+
+            #navigation ul li a {
+                border-color: #A9B28F;
+                border-style: solid;
+                border-width: 0 1px;
+                background-color: #5F6847;
+                display: block;
+                padding: 1em 2em;
+                text-decoration: none;
+                color: #EBEFE0;
+            }
+            
+            #navigation ul li a:hover {
+                color: #5F6847;
+                background-color: #EBEFE0; 
+                text-decoration: underline;                               
+            }
+            
+            #container {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 3em 2em 1em;
+                background-color: #EFEEE0;
+                border: 1px solid ##475228;
+            }
+            
+            #container .comic div img {
+                max-width: 100%;
+            }
+            
+            h1, h2 {
+                color: #262F0F;
+            }
+            
+            h2 {
+                margin: 2em 0 0.375em;
+            }
+            
+            .visualClear {
+                clear: both;
+            }
+            
         </style>
 
     </head>
@@ -18,19 +88,25 @@
 
         {% set comic_filter = get_comic_filter(request) %}
 
-        <ul id="navigation">
-            <li><a href="{{ url_for('.index') }}">Today</a></li>
-            <li><a href="{{ url_for('.date') }}">By Date</a></li>
-            <li><a href="{{ url_for('.series') }}">By Strip</a></li>
-            <li><a href="{{ url_for('.config') }}">Configuration</a></li>
-        </ul>
-        
-        <h1>{{ title }}</h1>
-
-        <div id="content">
-            {% block content %}
-            {% endblock %}
+        <div id="navigation">
+            <ul>
+                <li><a href="{{ url_for('.index') }}">Today</a></li>
+                <li><a href="{{ url_for('.date') }}">By Date</a></li>
+                <li><a href="{{ url_for('.series') }}">By Strip</a></li>
+                <li><a href="{{ url_for('.config') }}">Configuration</a></li>
+            </ul>
+            <div class="visualClear"><!-- --></div>
         </div>
-
+        
+        <div id="container">
+        
+            <h1>{{ title }}</h1>
+    
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        
     </body>
 </html>
