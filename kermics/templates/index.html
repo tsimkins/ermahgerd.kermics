@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for i in comics %}
+    
+        {% if i.series.key in comic_filter %}
+            <div class="comic">
+                <h2>{{i.series.title}}</h2>
+                <div>
+                    {% if i.published_date == i.original_date %}
+                        <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date) }}" />
+                    {% else %}
+                        <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date, original_date=i.original_date) }}" />
+                    {% endif%}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock %}
+
+

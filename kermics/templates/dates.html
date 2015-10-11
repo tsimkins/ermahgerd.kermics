@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <ul>
+    {% for i in dates %}
+        <li>
+            <a href="{{url_for('.index', published_date=i)}}">
+                {{ format_date(i) }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
+

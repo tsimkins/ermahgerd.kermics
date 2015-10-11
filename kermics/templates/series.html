@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <ul>
+    {% for i in series %}
+        <li>
+            <a href="{{url_for('.comics', key=i.key)}}">
+                {{i.title}}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
+

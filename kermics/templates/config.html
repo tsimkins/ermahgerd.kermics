@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <p>Show Comics:</p>
+    {% set _name = "config_comic" %}
+    <form method="post" action="{{ url_for('.config') }}" id="{{_id}}">
+        <div class="{{_id}}_container">
+        {% for i in comics %}
+            {% set _id = "_".join([_name, i.key]) %}
+            <div>
+                <input 
+                    type="checkbox" 
+                    name="{{_name}}" 
+                    id="{{_id}}" 
+                    value="{{ i.key }}" 
+                    
+                    {% if i.key in comic_filter %}
+                        checked="checked"
+                    {% endif %}
+                    
+                    />
+                <label for="{{_id}}">{{ i.title }}</label>
+            </div>
+        {% endfor %}
+        </div>
+        <input class="submit" type="submit" value="Submit" />
+    </form>
+
+{% endblock %}
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+        <title>{{ title }}</title>
+    
+        <style type="text/css">
+            body {
+                font-family: Arial;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        {% set comic_filter = get_comic_filter(request) %}
+
+        <ul id="navigation">
+            <li><a href="{{ url_for('.index') }}">Today</a></li>
+            <li><a href="{{ url_for('.date') }}">By Date</a></li>
+            <li><a href="{{ url_for('.series') }}">By Strip</a></li>
+            <li><a href="{{ url_for('.config') }}">Configuration</a></li>
+        </ul>
+        
+        <h1>{{ title }}</h1>
+
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </body>
+</html>
