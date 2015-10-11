@@ -12,7 +12,7 @@
                     <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date) }}" 
                          alt="{{ i.series.title}} - {{ date_text }}" />
                 {% else %}
-                    <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date, original_date=i.original_date) }}
+                    <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date, original_date=i.original_date) }}"
                          alt="{{ i.series.title}} - {{ date_text }}" />
                 {% endif%}
             </div>
