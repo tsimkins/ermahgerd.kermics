@@ -6,7 +6,7 @@
 
 `cd ermahgerd.kermics`
 
-`mkdir db`
+`mkdir db data`
 
 `. bin/activate`
 
@@ -17,3 +17,5 @@
 `cd app`
 
 `python ./db_setup.py`
+
+`python ./load_comics.py`
