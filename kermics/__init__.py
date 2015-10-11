@@ -66,7 +66,8 @@ def comics(key=None):
     if not series:
         return redirect(url_for('series'))
 
-    comics = series.comics
+    comics = series.comics.order_by(Comic.published_date.desc())
+    
     return render_template('comics.html', title=series.title, series=series, comics=comics)
 
 @app.route("/comic/<key>/<published_date>", methods=['GET'])
