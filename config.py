@@ -1,6 +1,6 @@
 COMIC_SERIES = {
     'andycapp' : 'Andy Capp',
-    'arlonjanis' : 'Arlon and Janis',
+    'arlonjanis' : 'Arlo and Janis',
     'babyblues' : 'Baby Blues',
     'bbailey' : 'Beetle Bailey',
     'bbailey-vintage' : 'Beetle Bailey (Vintage)',
