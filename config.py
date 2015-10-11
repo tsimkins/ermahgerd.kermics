@@ -16,8 +16,10 @@ COMIC_SERIES = {
     'dilbert-vintage' : 'Dilbert (Vintage)',
     'drabble' : 'Drabble',
     'forbetter' : 'For Better or For Worse',
+    'foxtrot' : 'Foxtrot',
     'frazz' : 'Frazz',
     'garfield' : 'Garfield',
+    'getfuzzy' : 'Get Fuzzy',
     'graffiti' : 'Graffiti',
     'hagar' : 'Hagar the Horrible',
     'hinlois' : 'Hi and Lois',
@@ -32,6 +34,7 @@ COMIC_SERIES = {
     'officehours-vintage' : 'Office Hours (Vintage)',
     'pearls' : 'Pearls',
     'phantom' : 'Phantom',
+    'phantomsunday' : 'Phantom (Sunday)',
     'phantom-vintage' : 'Phantom (Vintage)',
     'pricklycity' : 'Prickly City',
     'reallifeadventures' : 'Real Life Adventures',
@@ -43,11 +46,23 @@ COMIC_SERIES = {
     'zits' : 'Zits',
 }
 
-APP_ROOT = '/home/simkintr/python/projects/ermagherd.kermics'
+APP_ROOT = '/home/simkintr/python/projects/ermahgerd.kermics'
 
-COMIC_FILES = [
-    '%s/data' % APP_ROOT
-]
-
+COMIC_FILES = """
+/home/jpoirier/public_html/comics/20151003
+/home/jpoirier/public_html/comics/20151005
+/home/jpoirier/public_html/comics/20151008
+/home/jpoirier/public_html/comics/20150927
+/home/jpoirier/public_html/comics/20151002
+/home/jpoirier/public_html/comics/20151006
+/home/jpoirier/public_html/comics/20151007
+/home/jpoirier/public_html/comics/20150929
+/home/jpoirier/public_html/comics/20150928
+/home/jpoirier/public_html/comics/20151001
+/home/jpoirier/public_html/comics/20151004
+/home/jpoirier/public_html/comics/20150930
+/home/jpoirier/public_html/comics/20151010
+/home/jpoirier/public_html/comics/20151009
+""".strip().split()
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///%s/db/kermics.db' % APP_ROOT

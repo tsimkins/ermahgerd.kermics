@@ -12,11 +12,7 @@ db = SQLAlchemy(app)
 def get_all_series():
     return ComicSeries.query.order_by('title').all()
 
-def get_comic_series(k, vintage=False):
-
-    if vintage:
-        k = '%s-vintage' % k
-        
+def get_comic_series(k):
     return ComicSeries.query.filter(ComicSeries.key==k).first()
 
 def get_comic(k, p, o=None):
