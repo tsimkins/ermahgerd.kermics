@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    {% for i in comics %}
+    {% for i in comics.items %}
         {% set date_text = format_date(i.original_date) %}
         <div class="comic">
             <h2>{{ date_text }}</h2>
@@ -22,4 +22,14 @@
 
 {% endblock %}
 
+{% block pager %}
+    <li class="pager">
+        {% if comics.has_prev %}
+            <a href="{{ url_for('.comics', key=key, page_number=comics.prev_num) }}">&laquo; Previous</a>
+        {% endif %}
+        {% if comics.has_next %}
+            <a href="{{ url_for('.comics', key=key, page_number=comics.next_num) }}">Next &raquo;</a>
+        {% endif %}
+    </li>
 
+{% endblock %}

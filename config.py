@@ -49,20 +49,9 @@ COMIC_SERIES = {
 APP_ROOT = '/home/simkintr/python/projects/ermahgerd.kermics'
 
 COMIC_FILES = """
-/home/jpoirier/public_html/comics/20151003
-/home/jpoirier/public_html/comics/20151005
-/home/jpoirier/public_html/comics/20151008
-/home/jpoirier/public_html/comics/20150927
-/home/jpoirier/public_html/comics/20151002
-/home/jpoirier/public_html/comics/20151006
-/home/jpoirier/public_html/comics/20151007
-/home/jpoirier/public_html/comics/20150929
-/home/jpoirier/public_html/comics/20150928
-/home/jpoirier/public_html/comics/20151001
-/home/jpoirier/public_html/comics/20151004
-/home/jpoirier/public_html/comics/20150930
-/home/jpoirier/public_html/comics/20151010
-/home/jpoirier/public_html/comics/20151009
+/home/jpoirier/public_html/comics
 """.strip().split()
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///%s/db/kermics.db' % APP_ROOT
+
+ITEMS_PER_PAGE = 7

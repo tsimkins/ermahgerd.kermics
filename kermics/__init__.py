@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.config.from_pyfile('application.cfg', silent=True)
 
+ITEMS_PER_PAGE = app.config.get('ITEMS_PER_PAGE')
+
 def get_comic_filter(request):
     comic_filter = request.cookies.get('comic_filter')
 
@@ -51,24 +53,27 @@ def date():
                             dates=get_dates()
                             )
                             
-@app.route("/comic", methods=['GET'])
+@app.route("/strip", methods=['GET'])
 def series():
-    return render_template('series.html', 
+    return render_template('strip.html', 
                             title="Comic Strips", 
                             series=get_all_series()
                             )
 
-@app.route("/comic/<key>", methods=['GET'])
-def comics(key=None):
+@app.route("/strip/<key>", methods=['GET'])
+@app.route("/strip/<key>/<page_number>", methods=['GET'])
+def comics(key=None, page_number=1):
 
     series = get_comic_series(key)
 
     if not series:
         return redirect(url_for('series'))
 
-    comics = series.comics.order_by(Comic.published_date.desc())
+    comics = series.comics.order_by(Comic.published_date.desc()).paginate(int(page_number), ITEMS_PER_PAGE, False)
     
-    return render_template('comics.html', title=series.title, series=series, comics=comics)
+    return render_template('comics.html', key=key, title=series.title, 
+                            series=series, comics=comics, 
+                            page_number=page_number)
 
 @app.route("/comic/<key>/<published_date>", methods=['GET'])
 @app.route("/comic/<key>/<published_date>/<original_date>", methods=['GET'])

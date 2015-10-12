@@ -57,6 +57,22 @@
                 text-decoration: underline;                               
             }
             
+            #navigation .pager {
+                float: right;
+            }
+            
+            #navigation .pager a {
+                display: inline-block;
+                background-color: transparent;
+                border: none;
+                padding: 1em;
+            }
+
+            #navigation .pager a:hover {
+                background-color: transparent;
+                color: #EBEFE0;
+            }
+            
             #container {
                 max-width: 1000px;
                 margin: 0 auto;
@@ -94,7 +110,10 @@
                 <li><a href="{{ url_for('.date') }}">By Date</a></li>
                 <li><a href="{{ url_for('.series') }}">By Strip</a></li>
                 <li><a href="{{ url_for('.config') }}">Configuration</a></li>
+                {% block pager %}
+                {% endblock %}
             </ul>
+
             <div class="visualClear"><!-- --></div>
         </div>
         
