@@ -15,6 +15,7 @@
                         <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date) }}"
                              alt="{{ i.series.title}} - {{ date_text }}" />
                     {% else %}
+                        <p class="date"> Originally published <strong>{{ date_text }}</strong></p>
                         <img src="{{ url_for('.comic', key=i.series.key, published_date=i.published_date, original_date=i.original_date) }}"
                              alt="{{ i.series.title}} - {{ date_text }}" />
                     {% endif%}

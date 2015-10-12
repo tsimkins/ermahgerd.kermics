@@ -24,7 +24,7 @@ def get_comic_filter(request):
 def format_date(i):
     try:
         j = datetime.strptime(i, '%Y%m%d')
-        return j.strftime('%A %B %d, %Y')
+        return j.strftime('%B %d, %Y (%A)').replace(' 0', ' ')
     except:
         return i
 
