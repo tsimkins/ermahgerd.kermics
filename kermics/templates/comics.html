@@ -25,10 +25,10 @@
 {% block pager %}
     <li class="pager">
         {% if comics.has_prev %}
-            <a href="{{ url_for('.comics', key=key, page_number=comics.prev_num) }}">&laquo; Previous</a>
+            <a href="{{ url_for('.comics', key=key, page_number=comics.prev_num) }}">&laquo; Newer</a>
         {% endif %}
         {% if comics.has_next %}
-            <a href="{{ url_for('.comics', key=key, page_number=comics.next_num) }}">Next &raquo;</a>
+            <a href="{{ url_for('.comics', key=key, page_number=comics.next_num) }}">Older &raquo;</a>
         {% endif %}
     </li>
 
