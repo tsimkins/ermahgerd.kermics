@@ -55,3 +55,5 @@ COMIC_FILES = """
 SQLALCHEMY_DATABASE_URI = 'sqlite:///%s/db/kermics.db' % APP_ROOT
 
 ITEMS_PER_PAGE = 7
+
+LOAD_COMICS_DAYS = 3
