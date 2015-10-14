@@ -4,6 +4,11 @@ from kermics.models import Comic, ComicSeries, get_comic_series, get_comic, \
 import magic
 import locale
 from datetime import datetime
+
+from kermics.cal import ComicCalendar
+
+calendar_formatter = ComicCalendar().getMonthCalendar
+
 locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 app = Flask(__name__)
@@ -30,6 +35,7 @@ def format_date(i):
 
 app.jinja_env.globals.update(get_comic_filter=get_comic_filter)
 app.jinja_env.globals.update(format_date=format_date)
+app.jinja_env.globals.update(calendar_formatter=calendar_formatter)
 
 @app.route("/", methods=['GET'])
 @app.route("/date/<published_date>", methods=['GET'])
@@ -42,15 +48,21 @@ def index(published_date=None):
 
     return render_template('index.html', 
                             title="Comics for %s" % format_date(published_date), 
-                            comics=comics
+                            comics=comics,
                             )
 
 @app.route("/date", methods=['GET'])
 def date():
 
+    dates = get_dates()
+
+    months = sorted(list(set(['%s01' % x[0:6] for x in dates])))
+
     return render_template('dates.html', 
                             title="Comics By Date", 
-                            dates=get_dates()
+                            dates=dates,
+                            months = months,
+                            url_method=lambda x: url_for('.index', published_date=x)
                             )
                             
 @app.route("/strip", methods=['GET'])

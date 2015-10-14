@@ -3,8 +3,9 @@
 
 {% block content %}
 
+    <h2> Last 7 Days </h2>
     <ul>
-    {% for i in dates %}
+    {% for i in dates[0:7] %}
         <li>
             <a href="{{url_for('.index', published_date=i)}}">
                 {{ format_date(i) }}
@@ -15,4 +16,16 @@
 
 {% endblock %}
 
+{% block calendar %}
+
+    <h2> All Days </h2>
+
+    {% for i in months %}
+
+        {{ calendar_formatter(i, date_list=dates, url_method=url_method)|safe }}
+
+    {% endfor %}
+    
+    <div class="visualClear"><!-- --></div>
+{% endblock %}
 

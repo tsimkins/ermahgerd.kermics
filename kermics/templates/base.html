@@ -103,6 +103,46 @@
                 clear: both;
             }
             
+            .calendar {
+                background-color: #EBEFE0;
+                width: calc(33% - 1em - 2px);
+                margin: 1em 0.5em;
+                float: left;
+                display: table;
+                border: 1px solid #D5DCC2;
+            }
+            
+            .calendar .month {
+                color: #EBEFE0;
+                background-color: #475228;
+                text-align: center;
+                padding: 0.75em 0.5em;
+                font-size: 0.875em;                
+            }
+         
+            .calendar .day {
+                font-size: 0.75em;
+                width: calc((100% * 1/7) - 2px - 1em);
+                float: left;
+                border: 1px solid #D5DCC2;
+                padding: 0.75em 0.5em;
+                text-align: right;
+                display: table-cell;
+                color: #CFCFCF;
+            }
+            
+            .calendar .day-header {
+                text-align: center;
+                font-weight: bold;
+                color: #475228;
+            }   
+            
+            .calendar .day a,
+            .calendar .day a:visited,
+            .calendar .day a:link {
+                color: #0000CC;
+                font-weight: bold;
+            }            
         </style>
 
     </head>
@@ -129,6 +169,9 @@
     
             <div id="content">
                 {% block content %}
+                {% endblock %}
+                
+                {% block calendar %}
                 {% endblock %}
             </div>
         </div>
