@@ -110,5 +110,5 @@ def config_post():
     config_comic = request.form.getlist('config_comic')
     comic_filter = "|".join(config_comic)
     resp = make_response( redirect(url_for('index')))
-    resp.set_cookie('comic_filter', comic_filter)    
+    resp.set_cookie('comic_filter', value=comic_filter, max_age=10*365*24*3600) # Cookie for 10 years
     return resp
