@@ -5,19 +5,17 @@ import os
 import re
 import time
 
-file_re = re.compile('^([a-zA-Z0-9]+)\-(\d{8})\.(gif|png)$')
-
-valid_types = [
-    'image/gif',
-    'image/png',
-    'image/jpeg',
-    ]
-
 app.config.from_object('config')
 app.config.from_pyfile('application.cfg', silent=True)
 
 directories = app.config.get('COMIC_FILES', {})
 days = app.config.get('LOAD_COMICS_DAYS', 3)
+
+fme = app.config.get('FILE_MIMETYPE_EXTENSION', {})
+
+valid_types = fme.keys()
+
+file_re = re.compile('^([a-zA-Z0-9]+(?:\-vintage)*)\-(\d{8})\.(%s)$' % '|'.join(fme.values()))
 
 counter = 0
 increment = 100
@@ -61,7 +59,7 @@ for d in directories:
 
             vintage = (published_date != original_date)
 
-            if vintage:
+            if vintage and not key.endswith('-vintage'):
                 key = '%s-vintage' % key
 
             comic_exists = get_comic(key, published_date, original_date)

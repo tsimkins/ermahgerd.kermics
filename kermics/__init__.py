@@ -26,9 +26,12 @@ def get_comic_filter(request):
     
     return comic_filter.split('|')
 
+def datestamp_to_date(i):
+    return datetime.strptime(i, '%Y%m%d')
+
 def format_date(i):
     try:
-        j = datetime.strptime(i, '%Y%m%d')
+        j = datestamp_to_date(i)
         return j.strftime('%B %d, %Y (%A)').replace(' 0', ' ')
     except:
         return i

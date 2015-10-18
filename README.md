@@ -10,7 +10,7 @@
 
 `. bin/activate`
 
-`pip install Flask Flask-SQLAlchemy python-magic lxml`
+`pip install Flask Flask-SQLAlchemy python-magic lxml BeautifulSoup mechanize`
 
 `git clone https://github.com/tsimkins/ermahgerd.kermics.git app`
 
