@@ -31,6 +31,10 @@ class KingFeaturesDownloader(ComicDownloader):
         if not comic_page_url:
             # Read Numeric id/code from Config
             comic_id = self.getConfig('id')
+            
+            # If the day is a sunday, try for the id_sunday (to handle Phantom)
+            if self.isSunday():
+                comic_id = self.getConfig('id_sunday', comic_id)
 
             # Comic short name
             comic_name = self.strip
