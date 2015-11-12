@@ -2,6 +2,8 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 
+import hashlib
+
 app = Flask(__name__)
 
 app.config.from_object('config')
@@ -38,6 +40,15 @@ def get_daily_comics(date=None):
         
     return Comic.query.filter(Comic.published_date==date).join(ComicSeries).order_by('comic_series.title').all()
 
+def getMD5Sum(image_url):
+    m = hashlib.md5()
+    try:
+        data = open(image_url, "rb").read()
+        m.update(data)
+        return m.hexdigest()
+    except IOError:
+        return None
+
 class ComicSeries(db.Model):
 
     __table_args__ = {'sqlite_autoincrement': True}
@@ -64,12 +75,16 @@ class Comic(db.Model):
     original_date = db.Column(db.String(128), nullable=True)
     published_date = db.Column(db.String(128), nullable=True)
     image_url = db.Column(db.String(1024))
+    md5sum = db.Column(db.String(32))
+    duplicate = db.Column(db.Boolean())
     
-    def __init__(self, series_id, original_date, published_date, image_url):
+    def __init__(self, series_id, original_date, published_date, image_url, duplicate=False):
 		self.series_id = series_id 
 		self.original_date = original_date 
 		self.published_date = published_date 
 		self.image_url = image_url 
+		self.md5sum = getMD5Sum(image_url)
+		self.duplicate = duplicate 
 
     def __repr__(self):
         return '<Comic "%s">' % (self.image_url.split('/')[-1])

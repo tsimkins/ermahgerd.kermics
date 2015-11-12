@@ -82,3 +82,31 @@ for d in directories:
 
 
 db.session.commit()
+
+# Remove missing comics from database
+for c in Comic.query.all():
+    image_url = c.image_url
+    if not os.path.exists(image_url):
+        print "Delete %s" % image_url
+        db.session.delete(c)
+        db.session.commit()
+    
+# Set 'duplicate' to false globally
+Comic.query.update({'duplicate' : False})
+db.session.commit()
+
+# Find duplicate comics, and mark all but the first as duplicate
+duplicates = db.session.query(Comic.md5sum, db.func.count(Comic.md5sum)).\
+        group_by(Comic.md5sum).having(db.func.count(Comic.md5sum) > 1).all()
+
+for (md5sum, count_md5sum) in duplicates:
+    duplicate_items = Comic.query.filter(Comic.md5sum==md5sum)
+    duplicate_items.update({'duplicate' : True})
+    first_id = Comic.query.filter(Comic.md5sum==md5sum).order_by('published_date').first().id
+    Comic.query.filter(Comic.id == first_id).update({'duplicate' : False})
+
+db.session.commit()
+
+# Delete duplicate comics from database
+Comic.query.filter(Comic.duplicate==True).delete()
+db.session.commit()
