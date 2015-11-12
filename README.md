@@ -6,7 +6,7 @@
 
 `cd ermahgerd.kermics`
 
-`mkdir db data`
+`mkdir db data conf`
 
 `. bin/activate`
 
